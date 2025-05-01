@@ -4,6 +4,7 @@ import { set_sidebar } from './utils/auto_sidebar.mjs';
 
 
 export default defineConfig({
+  ignoreDeadLinks: true,  // 忽略死链接
   head: [["link", { rel: "icon", href: "/Logo.svg" }]], // 标签页图标
   title: "Welcome to my Site!",
   titleTemplate: ":title | DtZNB's Blog",
