@@ -43,6 +43,8 @@ jobs:
           cache: pnpm # 使用pnpm缓存
       - name: Setup Pages
         uses: actions/configure-pages@v4  # 在工作流程自动配置GithubPages
+      - name: Clean pnpm cache
+        run: pnpm store prune
       - name: Install dependencies
         run: pnpm install
       - name: Build with VitePress
