@@ -4,7 +4,9 @@ import { set_sidebar } from './utils/auto_sidebar.mjs';
 
 
 export default defineConfig({
-  ignoreDeadLinks: true,  // 忽略死链接
+  base: "/doc-demo/", // 打包路径
+  lastUpdated: true, // 显示上次修改时间
+  ignoreDeadLinks: true, // 忽略死链接
   head: [["link", { rel: "icon", href: "/Logo.svg" }]], // 标签页图标
   title: "Welcome to my Site!",
   titleTemplate: ":title | DtZNB's Blog",
@@ -106,12 +108,11 @@ export default defineConfig({
               selectText: "选择",
               navigateText: "切换",
               closeText: "取消",
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     },
-
 
     // 底部配置
     footer: {
