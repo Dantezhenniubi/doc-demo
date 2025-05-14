@@ -58,3 +58,46 @@ VitePress 确实自带 Vue，不需要单独安装 Vue。VitePress 是基于 Vit
 - 你可以在 .vitepress/theme 目录下创建自定义的 Vue 组件
 - 对于自定义布局，你可以创建 Vue 组件并在 .vitepress/theme/index.js 中注册它们
 所以，你可以直接在 VitePress 项目中使用 Vue 的所有功能，包括创建自定义布局页面，而不需要额外安装 Vue。
+
+# 为什么我按VitePress官方文档复制粘贴的团队页写法的代码会报错呢？
+先看看源代码：
+```
+---
+layout: page
+---
+<script setup>
+import {
+  VPTeamPage,
+  VPTeamPageTitle,
+  VPTeamMembers
+} from 'vitepress/theme'
+
+const members = [
+  {
+    avatar: 'https://www.github.com/yyx990803.png',
+    name: 'Evan You',
+    title: 'Creator',
+    links: [
+      { icon: 'github', link: 'https://github.com/yyx990803' },
+      { icon: 'twitter', link: 'https://twitter.com/youyuxi' }
+    ]
+  },
+  ...
+]
+</script>
+
+<VPTeamPage>
+  <VPTeamPageTitle>
+    <template #title>
+      Our Team
+    </template>
+    <template #lead>
+      The development of VitePress is guided by an international
+      team, some of whom have chosen to be featured below.
+    </template>
+  </VPTeamPageTitle>
+  <VPTeamMembers :members />
+</VPTeamPage>
+```
+
+你可能注意到了，`members`这一串后面有一个省略号`...`， 这只是教学的代替，把它删掉就行，因为不符合语法。
