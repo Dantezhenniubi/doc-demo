@@ -136,3 +136,23 @@ public 目录在VitePress中有特殊地位：
 2. 替代方案 ：使用相对路径导入图片（在Vue组件中使用`import`语句）
 3. GitHub原始链接 ：使用`https://github.com/username/repo/blob/master/path/to/image.jpg?raw=true`格式的链接
 最佳实践是将所有静态资源集中放在`public/assets`目录下，这样可以确保在本地开发和GitHub Pages部署中都能正常显示。
+
+#  为什么/assets/image.jpg和/doc-demo/assets/image.jpg的图片路径都可以正常显示呢？
+## VitePress中的图片路径解析机制
+在VitePress中， /assets/image.jpg 和 /doc-demo/assets/image.jpg 这两种路径都能正常显示的原因与VitePress的基础路径（base path）处理机制有关。
+
+## 自动处理base路径
+VitePress会自动处理基础路径前缀。当你在配置文件中设置了 base: "/doc-demo/" 后：
+
+1. 开发环境 ：VitePress会自动将 /assets/image.jpg 解析为正确的本地路径
+2. 生产环境 ：VitePress会自动将 /assets/image.jpg 转换为 /doc-demo/assets/image.jpg
+## 为什么两种写法都可以
+- 不带仓库名的路径 （ /assets/image.jpg ）：VitePress会在构建时自动添加base前缀
+- 带仓库名的路径 （ /doc-demo/assets/image.jpg ）：已经包含了完整路径，也能正确解析
+## 最佳实践
+推荐使用不带仓库名的写法（ /assets/image.jpg ），因为：
+
+1. 代码更简洁
+2. 如果仓库名变更，不需要修改所有图片路径
+3. 在本地开发和生产环境都能正常工作
+这种自动处理机制是VitePress的一个便利特性，让你不必担心基础路径的问题。

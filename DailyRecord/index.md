@@ -35,7 +35,7 @@ const partners = [
     title: '炎发灼眼的杀手',
   },
   {
-    avatar: '/assets/夏娜.jpg',
+    avatar: './assets/夏娜.jpg',
     name: '艾丽妮',
     title: '伊比利亚审判官',
   },
