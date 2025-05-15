@@ -114,3 +114,25 @@ avatar: '/doc-demo/DailyRecord/assets/结城希亚.jpg',
 - 不是专门图床服务，可能加载速度会很慢
 
 建议尝试的是图床服务或者CDN服务。
+
+总的来说，如下所述：
+
+## 如果把图片放在public下，是可以访问到并正常显示的，但是为什么像之前那样放在别的文件夹下的assets文件夹下就不能正常访问并显示呢？
+这是因为VitePress默认情况下会将public文件夹下的文件作为静态资源进行处理，而不会对其进行编译和打包。而assets文件夹下的文件是需要经过编译和打包的，所以无法直接访问。
+## 为什么public目录下的图片可以正常显示
+public 目录在VitePress中有特殊地位：
+
+1. public目录的特殊处理 ： public 目录下的文件会被原样复制到构建输出的根目录下
+2. 路径解析方式 ：引用时使用根路径（以 / 开头），如 /assets/image.jpg
+3. 无需base前缀 ：VitePress会自动处理base路径前缀（如 /doc-demo/ ）
+## 为什么其他目录下的图片无法显示
+当图片放在其他目录（如`DailyRecord/assets/`）时：
+
+1. 不会自动复制 ：这些文件不会自动复制到构建输出目录
+2. 路径解析问题 ：VitePress不会自动处理这些路径
+3. base路径问题 ：在GitHub Pages上，还需要考虑仓库名称作为base路径
+## 解决方案
+1. 推荐做法 ：将所有静态资源放在`public`目录下，通过`/assets/image.jpg`引用
+2. 替代方案 ：使用相对路径导入图片（在Vue组件中使用`import`语句）
+3. GitHub原始链接 ：使用`https://github.com/username/repo/blob/master/path/to/image.jpg?raw=true`格式的链接
+最佳实践是将所有静态资源集中放在`public/assets`目录下，这样可以确保在本地开发和GitHub Pages部署中都能正常显示。
