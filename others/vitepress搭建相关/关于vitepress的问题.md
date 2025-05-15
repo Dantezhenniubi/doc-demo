@@ -101,3 +101,10 @@ const members = [
 ```
 
 你可能注意到了，`members`这一串后面有一个省略号`...`， 这只是教学的代替，把它删掉就行，因为不符合语法。
+
+# 为什么我像`./assets/结城希亚.jpg`这样写之后推送到github pages部署出来，团队成员头像无法正常显示呢？
+这是因为图片路径的引用方式不正确，在GitHub Pages上需要考虑仓库名称作为基础路径。
+就像`config.mjs`中的`base`属性一样，所以你需要在图片路径前面加上仓库名称，就像这样：
+```
+avatar: '/doc-demo/DailyRecord/assets/结城希亚.jpg',
+```

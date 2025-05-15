@@ -14,7 +14,7 @@ import {
 
 const members = [
   {
-    avatar: './assets/DtZNB.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/DtZNB.jpg',
     name: 'DtZNB',
     title: '创作者',
     links: [
@@ -30,87 +30,87 @@ const members = [
 
 const partners = [
   {
-    avatar: './assets/夏娜.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/夏娜.jpg',
     name: '夏娜',
     title: '炎发灼眼的杀手',
   },
   {
-    avatar: './assets/艾丽妮.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/艾丽妮.jpg',
     name: '艾丽妮',
     title: '伊比利亚审判官',
   },
   {
-    avatar: './assets/椎名真白.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/椎名真白.jpg',
     name: '椎名真白',
     title: '樱花庄天才绘画少女',
   },
   {
-    avatar: './assets/宵宫.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/宵宫.jpg',
     name: '宵宫',
     title: '长野原烟花店老板',
   },
   {
-    avatar: './assets/八奈见杏菜.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/八奈见杏菜.jpg',
     name: '八奈见杏菜',
     title: '4K败犬女主',
   },
   {
-    avatar: './assets/洛可可.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/洛可可.jpg',
     name: '洛可可',
     title: '愚人剧团大副',
   },
   {
-    avatar: './assets/安比·德玛拉.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/安比·德玛拉.jpg',
     name: '安比·德玛拉',
     title: '白银小队队长',
   },
   {
-    avatar: './assets/银狼.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/银狼.jpg',
     name: '银狼',
     title: '星核猎手天才黑客少女',
   },
   {
-    avatar: './assets/喜多郁代.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/喜多郁代.jpg',
     name: '喜多郁代',
     title: '结束乐队主唱',
   },
   {
-    avatar: './assets/珂莱塔·莫塔里.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/珂莱塔·莫塔里.jpg',
     name: '珂莱塔·莫塔里',
     title: '莫塔里家族二小姐',
   },
   {
-    avatar: './assets/椿.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/椿.jpg',
     name: '椿',
     title: '黑海岸执花',
   },
   {
-    avatar: './assets/夏目蓝.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/夏目蓝.jpg',
     name: '夏目蓝',
     title: '夏目家长女',
   },
   {
-    avatar: './assets/结城希亚.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/结城希亚.jpg',
     name: '结城希亚',
     title: '芭菲女王',
   },
   {
-    avatar: './assets/丛雨.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/丛雨.jpg',
     name: '丛雨',
     title: '丛雨丸的管理者',
   },
   {
-    avatar: './assets/君原结爱.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/君原结爱.jpg',
     name: '君原结爱',
     title: '洋馆中独自生活的少女',
   },
   {
-    avatar: './assets/蓼科伊舞.jpg',
+    avatar: '/doc-demo/DailyRecord/assets/蓼科伊舞.jpg',
     name: '蓼科伊舞',
     title: '蓼科·M（麦克布莱德）·伊舞瓦莉（Tateshina McBride Euvely）警察厅长官的女儿',
   }
 ]
-
+// 在GitHub Pages上显示图片需要使用完整路径，包含仓库名称作为基础路径
 </script>
 
 <VPTeamPage>
