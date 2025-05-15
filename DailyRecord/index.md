@@ -14,7 +14,7 @@ import {
 
 const members = [
   {
-    avatar: 'https://Dantezhenniubi.github.io/doc-demo/DailyRecord/assets/DtZNB.jpg',
+    avatar: 'https://github.com/Dantezhenniubi/doc-demo/blob/master/DailyRecord/assets/DtZNB.jpg?raw=true',
     name: 'DtZNB',
     title: '创作者',
     links: [
