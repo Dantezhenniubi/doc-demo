@@ -1,3 +1,6 @@
+---
+outline: [1,4]
+---
 # 我想问一下，如果想自定义布局页面，使用vue写一个页面，vitepress能做到吗？在此基础上还能使用如Bulma这样的CSS库吗？
 
 ## VitePress自定义布局与CSS库集成
@@ -103,56 +106,56 @@ const members = [
 你可能注意到了，`members`这一串后面有一个省略号`...`， 这只是教学的代替，把它删掉就行，因为不符合语法。
 
 # 为什么我像`./assets/结城希亚.jpg`这样写之后推送到github pages部署出来，团队成员头像无法正常显示呢？
-我一开始以为是像其它图片那样在GitHub Pages上需要考虑仓库名称作为基础路径，在图片路径前面加上仓库名称，就像这样：
-```
-avatar: '/doc-demo/DailyRecord/assets/结城希亚.jpg',
-```
-但是我尝试了很多次都不能正常显示，最后试着直接使用仓库图片原始链接，就可以正常显示了。
-但是这样做会有很多缺点，比如：
-- GitHub有流量限制
-- 对图片大小有限制
-- 不是专门图床服务，可能加载速度会很慢
+## VitePress中的图片路径处理机制
+### 一、VitePress中的静态资源处理原则
+首先我们要明白静态资源在VitePress中不同文件夹下的处理原则：
+#### 1. public目录的特殊地位
+- 自动复制 : public目录下的文件会被原样复制到构建输出的根目录下
+- 无需编译 : 这些文件不会经过编译和打包处理
+- 路径保持 : 目录结构会在构建后保持不变
+#### 2. 其他目录下的资源处理
+- 需要编译 : 非public目录下的资源文件(如assets目录)需要经过编译和打包
+- 不会自动复制 : 这些文件不会自动复制到构建输出目录
+- 需要特殊引用 : 通常需要使用import语句或其他方式引入
 
-建议尝试的是图床服务或者CDN服务。
+### 二、图片路径引用规则
+#### 1. Markdown文件中的图片引用
+- 简化路径 : 可以使用不带仓库名的路径，如`/assets/image.jpg`
+- 自动处理 : VitePress会自动添加base前缀
+- 完整路径 : 也可以使用带仓库名的完整路径，如`/doc-demo/assets/image.jpg`
+#### 2. Vue组件中的图片引用
+- 特殊情况 : 在Vue组件中(如团队页面)，<u>**路径不会自动添加base前缀**</u>
+- 需要完整路径 : <u>**必须手动添加完整路径**</u>，如`/doc-demo/assets/夏娜.jpg`
+- 原因 : Vue组件中的静态字符串不会被VitePress的路径处理机制处理
 
-总的来说，如下所述：
+::: tip
+这也是为什么`config.mjs`里配置好`base`属性后例如Logo的路径不加仓库前缀`/doc-demo/`也能正常显示，但md文件里自定义page中写组件时，组件里的路径得加上的原因。
+:::
 
-## 如果把图片放在public下，是可以访问到并正常显示的，但是为什么像之前那样放在别的文件夹下的assets文件夹下就不能正常访问并显示呢？
-这是因为VitePress默认情况下会将public文件夹下的文件作为静态资源进行处理，而不会对其进行编译和打包。而assets文件夹下的文件是需要经过编译和打包的，所以无法直接访问。
-## 为什么public目录下的图片可以正常显示
-public 目录在VitePress中有特殊地位：
+### 三、GitHub Pages部署时的特殊考虑
+#### 1. base路径设置
+- 配置文件 : 在VitePress配置中设置`base: "/doc-demo/"`
+- 开发环境 : 自动将`/assets/image.jpg`解析为正确的本地路径
+- 生产环境 : 自动将`/assets/image.jpg`转换为`/doc-demo/assets/image.jpg`
+#### 2. 路径解析机制
+- 不带仓库名 : VitePress会在构建时自动添加base前缀
+- 带仓库名 : 已经包含完整路径，也能正确解析
 
-1. public目录的特殊处理 ： public 目录下的文件会被原样复制到构建输出的根目录下
-2. 路径解析方式 ：引用时使用根路径（以 / 开头），如 /assets/image.jpg
-3. 无需base前缀 ：VitePress会自动处理base路径前缀（如 /doc-demo/ ）
-## 为什么其他目录下的图片无法显示
-当图片放在其他目录（如`DailyRecord/assets/`）时：
+### 四、最佳实践建议
+#### 1. 资源存放位置和路径写法选择
+- 推荐做法 : 将所有静态资源放在`public/assets`目录下
+- 引用方式 : 一般直接通过`/assets/image.jpg`引用,不加仓库名（虽然加也不会报错）,这样在更换`base`路径后不用一个个修改；组件中引用时，如果资源在`public`目录下，引用时得使用`/doc-demo/assets/夏娜.jpg`这样加了仓库前缀的，如果资源不在`public`目录下，引用时可能得使用import语句引入，如`import img from '@/assets/image.jpg'`
+- 优势 : 确保在本地开发和GitHub Pages部署中都能正常显示
 
-1. 不会自动复制 ：这些文件不会自动复制到构建输出目录
-2. 路径解析问题 ：VitePress不会自动处理这些路径
-3. base路径问题 ：在GitHub Pages上，还需要考虑仓库名称作为base路径
-## 解决方案
-1. 推荐做法 ：将所有静态资源放在`public`目录下，通过`/assets/image.jpg`引用
-2. 替代方案 ：使用相对路径导入图片（在Vue组件中使用`import`语句）
-3. GitHub原始链接 ：使用`https://github.com/username/repo/blob/master/path/to/image.jpg?raw=true`格式的链接
-最佳实践是将所有静态资源集中放在`public/assets`目录下，这样可以确保在本地开发和GitHub Pages部署中都能正常显示。
+#### 2. 特殊情况处理
+- Vue组件中 : 使用完整路径(`/doc-demo/assets/image.jpg`)
+- 替代方案 : 使用相对路径导入图片(在Vue组件中使用 import 语句)
+- 避免使用 : GitHub原始链接(有流量限制、大小限制、加载速度慢)
 
-#  为什么/assets/image.jpg和/doc-demo/assets/image.jpg的图片路径都可以正常显示呢？
-## VitePress中的图片路径解析机制
-在VitePress中， /assets/image.jpg 和 /doc-demo/assets/image.jpg 这两种路径都能正常显示的原因与VitePress的基础路径（base path）处理机制有关。
+### 五、问题解决方案
+如果遇到图片无法显示的问题，可以尝试以下解决方案:
 
-## 自动处理base路径
-VitePress会自动处理基础路径前缀。当你在配置文件中设置了 base: "/doc-demo/" 后：
-
-1. 开发环境 ：VitePress会自动将 /assets/image.jpg 解析为正确的本地路径
-2. 生产环境 ：VitePress会自动将 /assets/image.jpg 转换为 /doc-demo/assets/image.jpg
-## 为什么两种写法都可以
-- 不带仓库名的路径 （ /assets/image.jpg ）：VitePress会在构建时自动添加base前缀
-- 带仓库名的路径 （ /doc-demo/assets/image.jpg ）：已经包含了完整路径，也能正确解析
-## 最佳实践
-推荐使用不带仓库名的写法（ /assets/image.jpg ），因为：
-
-1. 代码更简洁
-2. 如果仓库名变更，不需要修改所有图片路径
-3. 在本地开发和生产环境都能正常工作
-这种自动处理机制是VitePress的一个便利特性，让你不必担心基础路径的问题。
+1. 检查图片是否放在正确的目录(public)
+2. 确认路径引用方式是否正确
+3. 在Vue组件中使用完整路径或import语句
+4. 考虑使用专业的图床服务或CDN服务

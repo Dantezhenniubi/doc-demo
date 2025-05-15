@@ -7,7 +7,7 @@ export default defineConfig({
   base: "/doc-demo/", // 打包路径
   lastUpdated: true, // 显示上次修改时间
   ignoreDeadLinks: true, // 忽略死链接
-  head: [["link", { rel: "icon", href: "/doc-demo/assets/Logo.svg" }]], // 标签页图标
+  head: [["link", { rel: "icon", href: "/assets/Logo.svg" }]], // 标签页图标
   title: " Ciallo～(∠・ω< )⌒☆!",
   titleTemplate: ":title | DtZNB's Blog",
   description: "DtZNB's Blog",

@@ -390,6 +390,9 @@ outline: "left", // 文章左侧导航栏
 2. `aside: "right"` - 控制侧边栏的位置，设置为`right`表示将侧边栏放在右侧
 即使关闭了大纲显示，由于`aside`属性仍然设置为`right`，所以右侧区域仍然保留，只是没有内容显示。想完全移除右侧区域，则需要设置**`aside: false`**
 
+详情参考：https://vitepress.dev/zh/guide/markdown
+         https://vitepress.dev/zh/reference/frontmatter-config
+
 ## 自动化工具
 ### 自动化侧边栏
 在前面的学习中，我们知道，我们使用这种配置时常常是一个目录有很多md文件，这些md文件所在的目录对应导航栏的一个选项。侧边栏的配置需要自己手写一个个路由映射到相应的文件上，那么有没有一个自动生成侧边栏的工具呢？根据一个目录下面的所有md文件自动生成路由，可以使用下面这个脚本：

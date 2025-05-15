@@ -12,6 +12,11 @@ import {
   VPTeamPageSection
 } from 'vitepress/theme'
 
+// 使用import语法导入图片
+import xiaNa from '../DailyRecord/assets/夏娜.jpg'
+import jieChengXiYa from '../DailyRecord/assets/结城希亚.jpg'
+import yinLang from '../DailyRecord/assets/银狼.jpg'
+
 const members = [
   {
     avatar: 'https://github.com/Dantezhenniubi/doc-demo/blob/master/DailyRecord/assets/DtZNB.jpg?raw=true',
@@ -35,7 +40,7 @@ const partners = [
     title: '炎发灼眼的杀手',
   },
   {
-    avatar: './assets/夏娜.jpg',
+    avatar: xiaNa,
     name: '艾丽妮',
     title: '伊比利亚审判官',
   },
