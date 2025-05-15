@@ -30,7 +30,7 @@ const members = [
 
 const partners = [
   {
-    avatar: '/doc-demo/DailyRecord/assets/夏娜.jpg',
+    avatar: '/doc-demo/assets/夏娜.jpg',
     name: '夏娜',
     title: '炎发灼眼的杀手',
   },
