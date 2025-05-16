@@ -123,39 +123,166 @@ const members = [
 - 简化路径 : 可以使用不带仓库名的路径，如`/assets/image.jpg`
 - 自动处理 : VitePress会自动添加base前缀
 - 完整路径 : 也可以使用带仓库名的完整路径，如`/doc-demo/assets/image.jpg`
+
 #### 2. Vue组件中的图片引用
-- 特殊情况 : 在Vue组件中(如团队页面)，<u>**路径不会自动添加base前缀**</u>
-- 需要完整路径 : <u>**必须手动添加完整路径**</u>，如`/doc-demo/assets/夏娜.jpg`
-- 原因 : Vue组件中的静态字符串不会被VitePress的路径处理机制处理
+> 情况描述 : 在Vue组件中(如团队页面)，<u>**路径不会自动添加base前缀**</u>，图片路径访问不到
+
+这种情况下，使用含有仓库前缀的路径如`/doc-demo/assets/夏娜.jpg`，虽然在**本地开发**时可以正常显示，但在GitHub Pages部署时是**访问不到的**:rage:。
+
+::: info 原因：
+- Vue组件中的静态字符串不会被VitePress的路径处理机制处理。
+
+- VitePress中使用frontmatter功能的`layout=page`时, <u>**这个md文件的组件会被编译成一个Vue组件**</u>，这时就需要用Vue的方式引入图片，不像上述一般md文件中的图片引用，一般md文件的图片引用是可以正常支持`./assets/夏娜.jpg`这样的相对定位的路径的:kissing_heart:。
+:::
+
+
 
 ::: tip
 这也是为什么`config.mjs`里配置好`base`属性后例如Logo的路径不加仓库前缀`/doc-demo/`也能正常显示，但md文件里自定义page中写组件时，组件里的路径得加上的原因。
 :::
 
-### 三、GitHub Pages部署时的特殊考虑
-#### 1. base路径设置
-- 配置文件 : 在VitePress配置中设置`base: "/doc-demo/"`
-- 开发环境 : 自动将`/assets/image.jpg`解析为正确的本地路径
-- 生产环境 : 自动将`/assets/image.jpg`转换为`/doc-demo/assets/image.jpg`
-#### 2. 路径解析机制
-- 不带仓库名 : VitePress会在构建时自动添加base前缀
-- 带仓库名 : 已经包含完整路径，也能正确解析
 
-### 四、最佳实践建议
-#### 1. 资源存放位置和路径写法选择
-- 推荐做法 : 将所有静态资源放在`public/assets`目录下
-- 引用方式 : 一般直接通过`/assets/image.jpg`引用,不加仓库名（虽然加也不会报错）,这样在更换`base`路径后不用一个个修改；组件中引用时，如果资源在`public`目录下，引用时得使用`/doc-demo/assets/夏娜.jpg`这样加了仓库前缀的，如果资源不在`public`目录下，引用时可能得使用import语句引入，如`import img from '@/assets/image.jpg'`
-- 优势 : 确保在本地开发和GitHub Pages部署中都能正常显示
+
+
+### 三、最佳实践建议
+#### 1. 静态资源存放位置和路径写法选择
+- 推荐存放位置(仅静态资源与页面耦合程度不高的情况) : 最好在VitePress配置中设置`base: "/doc-demo/"`，将所有静态资源放在`public/assets`目录下
+- 引用方式 : 一般直接通过`/assets/image.jpg`引用,不加仓库名（虽然加也不会报错）,这样在更换`base`路径后不用一个个修改。
+目前发现比较特殊的情况就是配置标签页Logo和自定义layout页面时，这里先说一下配置标签页Logo的情况：
+```js
+head: [["link", { rel: "icon", href: "/doc-demo/assets/Logo.svg" }]], // 标签页图标
+```
+必须得像这样加上仓库名前缀，否则访问不到。
+
+组件中引用时，如果资源在`public`目录下，引用时得使用`/doc-demo/assets/夏娜.jpg`这样加了仓库前缀的，如果资源不在`public`目录下，引用时可能得使用import语句引入，如`import img from '@/assets/image.jpg'`
 
 #### 2. 特殊情况处理
-- Vue组件中 : 使用完整路径(`/doc-demo/assets/image.jpg`)
-- 替代方案 : 使用相对路径导入图片(在Vue组件中使用 import 语句)
-- 避免使用 : GitHub原始链接(有流量限制、大小限制、加载速度慢)
+这里指的**特殊情况**就是在编写自定义layout页面使用frontmatter功能时例如
+[vue组件中的图片引用](./关于vitepress的问题.md#_2-vue组件中的图片引用)
 
-### 五、问题解决方案
-如果遇到图片无法显示的问题，可以尝试以下解决方案:
+```
+---
+layout: page
+---
+```
+ 虽然你可以直接使用**GitHub原始链接**来正常显示图片，但是有流量限制、大小限制、加载速度慢的缺点，显然是不合适的。
 
-1. 检查图片是否放在正确的目录(public)
-2. 确认路径引用方式是否正确
-3. 在Vue组件中使用完整路径或import语句
-4. 考虑使用专业的图床服务或CDN服务
+> ##### VitePress中更优雅的图片导入方式
+前面我们提到，import语句可以在自定义页面中用于导入静态资源，但是这样不便于我们后续的扩展和阅读，毕竟图片这种会越来越多。
+下面有几种推荐的方式：
+- 使用动态导入
+可以使用Vite的`import.meta.glob`动态导入图片，这样可以将所有图片统一管理。
+```js
+// 批量导入assets目录下的所有图片
+const images = import.meta.glob('../DailyRecord/assets/*.{jpg,png,svg}', { eager: true })
+
+// 创建一个映射对象，方便使用
+const imageMap = {}
+Object.entries(images).forEach(([path, module]) => {
+  // 从路径中提取文件名（不含扩展名）
+  const name = path.split('/').pop().split('.')[0]
+  imageMap[name] = module.default
+})
+
+// 在成员数据中使用
+const partners = [
+  {
+    avatar: imageMap['夏娜'],
+    name: '夏娜',
+    title: '炎发灼眼的杀手'
+  },
+  {
+    avatar: imageMap['结城希亚'],
+    name: '结城希亚',
+    title: '芭菲女王'
+  }
+  // 其他成员...
+]
+```
+
+下面是我用AI写的一个js文件，你可以直接用于项目下的utils文件夹作为工具类。
+```js
+/**
+ * 简化版图片导入工具
+ * 只需传入路径和文件名即可查找匹配的图片
+ * 支持在VitePress项目中方便地引用图片资源
+ * 
+ * @module imageImports
+ * @example
+ * // 在Vue组件中使用
+ * import { getImage } from '../utils/imageImports';
+ * const avatar = getImage('DailyRecord/assets', '头像图片');
+ */
+
+// 预定义支持的图片目录映射
+// 注意：Vite要求import.meta.glob的参数必须是字符串字面量
+const IMAGE_DIRECTORIES = {
+  'DailyRecord/assets': import.meta.glob('../../DailyRecord/assets/*.{jpg,png,svg}', { eager: true, import: 'default' }),
+  'public/assets': import.meta.glob('../../public/assets/*.{jpg,png,svg}', { eager: true, import: 'default' }),
+  // 可以在这里添加更多目录
+};
+
+/**
+ * 获取所有已注册的图片目录
+ * @returns {string[]} 已注册目录的名称列表
+ */
+const getRegisteredDirectories = () => Object.keys(IMAGE_DIRECTORIES);
+
+/**
+ * 获取指定目录下的图片
+ * @param {string} dirPath - 图片所在目录的路径，例如 'DailyRecord/assets'
+ * @param {string} fileName - 图片文件名（不含扩展名）
+ * @param {string|string[]} [extensions] - 可选的文件扩展名（不含点，如'jpg'或['jpg','png']）
+ * @returns {string|null} 图片URL或null（如果未找到）
+ */
+const getImage = (dirPath, fileName, extensions) => {
+  try {
+    // 根据dirPath选择正确的图片集合
+    const images = IMAGE_DIRECTORIES[dirPath];
+    
+    // 检查目录是否受支持
+    if (!images) {
+      console.warn(`不支持的图片目录: "${dirPath}"`);
+      return null;
+    }
+    
+    // 将extensions转换为数组格式，方便处理
+    const extensionsArray = extensions 
+      ? (Array.isArray(extensions) ? extensions : [extensions]) 
+      : [];
+    
+    // 提取文件名和扩展名的正则表达式
+    const fileNameRegex = /\/([^/]+)\.([^.]+)$/;
+    
+    // 查找匹配文件名的图片
+    for (const [path, module] of Object.entries(images)) {
+      // 从路径中提取文件名和扩展名
+      const match = path.match(fileNameRegex);
+      if (!match) continue;
+      
+      const [, imgFileName, imgExtension] = match;
+      
+      // 如果文件名匹配且扩展名符合要求，返回图片URL
+      if (imgFileName === fileName && 
+          (extensionsArray.length === 0 || extensionsArray.includes(imgExtension))) {
+        return module;
+      }
+    }
+    
+    // 未找到匹配的图片
+    const extensionInfo = extensions 
+      ? `(扩展名: ${Array.isArray(extensions) ? extensions.join(',') : extensions})` 
+      : '';
+    // 使用开发环境下更详细的日志，生产环境下简化日志
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`图片 "${fileName}"${extensionInfo} 在目录 "${dirPath}" 中未找到`);
+    } else {
+      console.warn(`图片未找到: ${dirPath}/${fileName}`);
+    }
+    return null;
+  } catch (error) {
+    console.error(`导入图片时出错: ${error.message}`);
+    return null;
+  }
+};
+  ```
