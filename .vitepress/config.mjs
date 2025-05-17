@@ -27,6 +27,7 @@ export default defineConfig({
         items: [
           { text: "前端工具分享", link: "/Front-end/frontend-tool-share/" },
           { text: "Vue3", link: "/Front-end/Vue3/" },
+          { text: "前端开发小技巧", link: "/Front-end/前端开发小技巧/" },
         ],
       },
 
@@ -44,7 +45,9 @@ export default defineConfig({
           {
             text: "个人博客",
             items: [
-              { text: "关于我", link: "/about" },
+              { text: "写文章相关", 
+                link: "others/写文章相关/vitepress功能/index" 
+              },
               {
                 text: "搭建vitepress",
                 link: "others/vitepress搭建相关/搭建vitepress",
@@ -77,7 +80,18 @@ export default defineConfig({
           text: "实习记录",
           items: set_sidebar("/DailyRecord/实习记录/"),
         },
+      ],
+      "/others/写文章相关/vitepress功能/index": [
+        {
+          text: "配置功能",
+          items: set_sidebar("/others/写文章相关/vitepress功能/配置功能/"),
+        },
+        {
+          text: "写文章用",
+          items: set_sidebar("/others/写文章相关/vitepress功能/写文章用/"),
+        },
       ]
+
         
     },
     // sidebar: false, // 关闭侧边栏

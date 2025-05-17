@@ -65,7 +65,7 @@ const getImage = (dirPath, fileName, extensions) => {
       }
     }
     
-    // 未找到匹配的图片
+    // 未找到匹配的图片，
     const extensionInfo = extensions 
       ? `(扩展名: ${Array.isArray(extensions) ? extensions.join(',') : extensions})` 
       : '';

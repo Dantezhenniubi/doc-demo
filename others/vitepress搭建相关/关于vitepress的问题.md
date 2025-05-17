@@ -201,6 +201,8 @@ const partners = [
 ```
 
 下面是我用AI写的一个js文件，你可以直接用于项目下的utils文件夹作为工具类。
+你可以参考或者[直接下载](../../.vitepress/utils/imageImports.js){target="download" download}
+<!-- 直接下载的写法，如果是md会被转译为html -->
 ```js
 /**
  * 简化版图片导入工具
