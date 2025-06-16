@@ -27,7 +27,7 @@ pnpm vitepress init
  - 是否使用TS,这里我们初学可以先不选，这里选no
  - 是否添加脚本到packege.json，这里选yes，相当于把启动命令`pnpm docs:dev`和那些打包命令添加到package.json中
 初始化完毕后，会得到最初的项目文件夹结构，这里简单介绍下：
-<img src="./教程图片/image-20240108190658316.png" width="300px" />
+<img src="./assets/image-20240108190658316.png" width="300px" />
  - `.vitepress` 核心目录，包含各种配置
    - `theme` 主题目录，包含各种样式，关于样式的配置在此修改
    - `utils` 工具目录，放一些工具函数，例如自动化侧边栏生成
@@ -41,15 +41,15 @@ pnpm vitepress init
 pnpm docs:dev
 ```
 打开，看到这个页面，说明项目初始化成功了。
-<img src="./教程图片/image-20240108191252240.png" width="300px">
+<img src="./assets/image-20240108191252240.png" width="300px">
 
 ## 自定义配置
 
 ### 主页修改
 对于主页，我们可以修改很多，下面是我改完的初版：
-<img src="./教程图片/fehelper-localhost-5173-1744303822641.png" width="300px">
+<img src="./assets/fehelper-localhost-5173-1744303822641.png" width="300px">
 下面来逐步说明(我直接用别人的图吧):
-<img src="./教程图片/image-20240108191730006.png" width="300px">
+<img src="./assets/image-20240108191730006.png" width="300px">
 先看看是在哪配置的，让我们打开`.vitepress`文件夹下的`config.mjs`文件。
 看到`defineConfig`下`themeConfig`里边，这里都是配置主题路由内容啥的。
 
@@ -58,10 +58,10 @@ pnpm docs:dev
 `siteTitle: "DtZNB's 个人知识库",`
 我直接引用官方表述吧：
 `可以自定义此项以替换导航中的默认站点标题 (应用配置中的 title)。当设置为 false 时，导航中的标题将被禁用。这在当 logo 已经包含站点标题文本时很有用。`
-[图片示例：站点标题配置](./教程图片/站点标题配置.png)
+[图片示例：站点标题配置](./assets/站点标题配置.png)
 
 - 然后是`7`的部分，这里是导航项`nav`，同样是在`themeConfig`中配置
-  [图片示例：导航项配置](./教程图片/导航栏配置.png)
+  [图片示例：导航项配置](./assets/导航栏配置.png)
   <details>
 
     ```
@@ -119,11 +119,11 @@ pnpm docs:dev
 
 - 网站导航栏还可以配置站点标题前的Logo，同样是在`themeConfig`中配置，需要增加一项`logo`
   ```logo: "/Logo.svg", // 导航栏logo```
-  [图片示例：Logo配置](./教程图片/站点标题Logo.png)
+  [图片示例：Logo配置](./assets/站点标题Logo.png)
   
 >**显然，网站导航栏不止上面提到的站点标题、Logo、导航项、社交链接，还要有搜索栏**
 - 搜索栏配置也是在`themeConfig`中配置，需要增加一项`search`
-  [图片示例：搜索栏配置](./教程图片/主页搜索框.png)
+  [图片示例：搜索栏配置](./assets/主页搜索框.png)
   <details>
 
   ```
@@ -154,7 +154,7 @@ pnpm docs:dev
 
 >#### **标签页修改**
 - 可以修改标签页的标题，在`defineConfig`下新增一项`title`
-  [图片示例：标签页标题](./教程图片/标签页标题.png)
+  [图片示例：标签页标题](./assets/标签页标题.png)
   ```title: "Welcome to my Site!",```
 
 
@@ -163,13 +163,13 @@ pnpm docs:dev
 
 ### **主页内容修改**
 既然是主页，也算是一个页面，自然是单独一个文件，所以我们需要在项目下默认的`index.md`中修改。
->如图所示:[图片示例:主页布局总结](./教程图片/主页布局总结.png)
+>如图所示:[图片示例:主页布局总结](./assets/主页布局总结.png)
 
 
 - 来看`1`的部分，这里是大标题`title`
-  **[图片示例：主页大标题](./教程图片/主页大标题.png)**
+  **[图片示例：主页大标题](./assets/主页大标题.png)**
   在这个`index.md`文件中，我们可以修改大标题hero的配置
-  **[图片示例：主页大标题代码](./教程图片/主页大标题代码.png)**
+  **[图片示例：主页大标题代码](./assets/主页大标题代码.png)**
   ```title: "Welcome to my Site!",```
 
 - 其它部分同理，教程就不一一赘述了，简单总结介绍下对应关系：
@@ -187,7 +187,7 @@ pnpm docs:dev
 - 在`themeConfig`下新增一项`sidebar`即```sidebar: {},```
 - 在`sidebar`下新增一项`"/": [],`，这里的`"/"`是路由路径，`[]`是路由下的内容
 - **意思就是说，指定该路由路径下的页面才会显示该侧边栏**
-  <img src="./教程图片/侧边栏指定1.png" width="300px">
+  <img src="./assets/侧边栏指定1.png" width="300px">
   如果你像我一样写了一个自动侧边栏的js，那么你可以直接这样使用：
 ```
     sidebar: {
@@ -196,16 +196,16 @@ pnpm docs:dev
     },
 ```
 - 如果说你想要分小章节，你可以像这样子编写，这样只会在各自的页面显示小章节页面：
-  <img src="./教程图片/侧边栏指定2.png" width="300px">
+  <img src="./assets/侧边栏指定2.png" width="300px">
 - 如果你还想要更高级一点的写法，你可以像这样写：
-  <img src="./教程图片/侧边栏指定3.png" width="300px">
+  <img src="./assets/侧边栏指定3.png" width="300px">
   这里使用了自定义的自动侧边栏js函数，原理其实较简单，遍历传入目录下所有文件路径，图中上部分是传统的写法，下部分是使用我自己写的自动侧边栏js函数的写法
   **值得注意的是，作为大目录的文件夹需要index.md文件否则会报错，其它正常的md文件则作为正常的页面显示。**
 注意：如果你传的路由是"/"，那么就会把项目目录下所有的页面都显示侧边栏, 这个是官方示例，对初学者有一定误导性。
 
 ### 文章页面配置
 目前初版的文章页面改成了这样:
-[图片示例：文章页面](./教程图片/文章页面.png)
+[图片示例：文章页面](./assets/文章页面.png)
 那么我们想要像图中这样的话，首先就要把默认的侧边栏关闭，然后把文章导航移动至左侧(后面我发现其实可以指定路由页面显示侧边栏，不用默认全部关闭)
 在`config.mjs`中的`themeConfig`下添加如下配置内容：
 ```
@@ -634,12 +634,12 @@ outline: "left", // 文章左侧导航栏
 ### 在Github上部署
 - 首先，将项目上传至Github仓库，这里我是手动先创了一个`.gitignore`文件(忽略列表)，然后命令行上传的，后面我用SourceTree再关联了一遍远程仓库，其实可以直接用SourceTree创建远程仓库直接上传的。
 - 在仓库点击`Settings`，然后点击`Pages`，在`Build and deployment`的`Source`中选择`Github Actions`
-<img src="./教程图片/选择GitHubAction.png" width="80%"> 
+<img src="./assets/选择GitHubAction.png" width="80%"> 
 
 - 设置工作流。去到`Actions`中，点击设置自己的工作流
-  <img src="./教程图片/选择Action.png" width="80%">
+  <img src="./assets/选择Action.png" width="80%">
 - 来到编写界面，输入以下配置内容（这里我参考了Vitepress官方文档，再根据自己的项目使用的各类版本进行修改）
-  <img src="./教程图片/workflows配置.png" width="80%">
+  <img src="./assets/workflows配置.png" width="80%">
 
   **配置内容如下:**
   <details>
@@ -772,10 +772,10 @@ outline: "left", // 文章左侧导航栏
          - 登录 GitHub 账号，进入 Settings -> Developer settings -> Personal access tokens
          - 点击 Generate new token
          - 选择对所有库操作
-         <img src="./教程图片/设置PAT1.png" width="80%">
+         <img src="./assets/设置PAT1.png" width="80%">
          - 找到仓库权限部分，设置workflow权限为`Read and write`, 其它必要的权限例如`Repo`也记得设置好，还有设置过期时间`No expiration`是永久有效的意思，不过不建议。
-         <img src="./教程图片/设置PAT2.png" width="80%">
-         <img src="./教程图片/设置PAT3.png" width="80%">
+         <img src="./assets/设置PAT2.png" width="80%">
+         <img src="./assets/设置PAT3.png" width="80%">
          - 点击Generate token，复制生成的Token
          - 在本地中，使用新Token重新登录（**注意！一定要删除账号重新登录，具体看下面**）
          >如何在 VSCode 和 Sourcetree 中使用 GitHub PAT？

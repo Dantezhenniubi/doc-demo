@@ -2,6 +2,8 @@
 import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
+// import 'bulma-prefix/css/bulma.prefixed.min.css'
+// import 'bulma/versions/bulma-prefixed.scss'
 
 /** @type {import('vitepress').Theme} */
 export default {

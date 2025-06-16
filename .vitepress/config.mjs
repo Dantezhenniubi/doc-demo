@@ -1,6 +1,10 @@
 import { defineConfig } from 'vitepress'
 // 自动生成侧边栏
-import { set_sidebar } from './utils/auto_sidebar.mjs';
+import { set_sidebar_smart } from "./utils/auto_sidebar.mjs";
+// 自动生成导航栏（新版本，支持VitePress两层嵌套限制）
+import { set_nav_smart } from "./utils/auto_nav_v2.mjs";
+// 黑名单配置示例
+import { COMMON_BLACKLIST } from "./utils/blacklist-example.mjs";
 
 
 export default defineConfig({
@@ -18,81 +22,62 @@ export default defineConfig({
 
     logo: "/assets/Logo.svg", // 导航栏logo
     siteTitle: "DtZNB's 个人知识库", // 导航栏中间的标题
-
+    // 导航栏最多支持两层嵌套，请注意不要在第二层items使用生成函数
     nav: [
       { text: "Home", link: "/" },
-      { text: "个人记录", link: "/DailyRecord/" },
-      {
-        text: "前端相关",
-        items: [
-          { text: "前端工具分享", link: "/Front-end/frontend-tool-share/" },
-          { text: "Vue3", link: "/Front-end/Vue3/" },
-          { text: "前端开发小技巧", link: "/Front-end/前端开发小技巧/" },
-        ],
-      },
-
-      {
-        text: "后端相关",
-        items: [
-          { text: "Java", link: "/Back-end/Java/" },
-          { text: "SpringBoot", link: "/Back-end/SpringBoot/" },
-        ],
-      },
-
+      // 原本的结构：
+      // {
+      //   text: "后端相关",
+      //   items: set_nav_v2("/Back-end"),
+      // },
+      set_nav_smart("个人记录", "/DailyRecord/"),
+      set_nav_smart("前端相关", "/Front-end"),
+      set_nav_smart("后端相关", "/Back-end"),
       {
         text: "更多",
         items: [
-          {
-            text: "个人博客",
-            items: [
-              { text: "写文章相关", 
-                link: "others/写文章相关/vitepress功能/index" 
-              },
-              {
-                text: "搭建vitepress",
-                link: "others/vitepress搭建相关/搭建vitepress",
-              }, // 指定md文件的路径也和文件夹一样
-              {
-                text: "关于vitepress的问题",
-                link: "others/vitepress搭建相关/关于vitepress的问题",
-              },
-              { text: "友情链接", link: "/friend" },
-            ],
-          },
-          { text: "两边栏演示", link: "/两边栏演示" },
-          { text: "关于我", link: "/about" },
-          { text: "留言板", link: "/message" },
-          { text: "友情链接", link: "/friend" },
+          // 使用黑名单过滤assets文件夹和临时文件
+          set_nav_smart("VitePress搭建相关", "/others/vitepress搭建相关", [
+            "assets",
+          ]),
+          set_nav_smart("写文章相关", "/others/写文章相关", COMMON_BLACKLIST),
         ],
       },
     ],
 
     // 侧边栏配置，这个函数自动生成侧边栏
     sidebar: {
+      // 使用智能侧边栏配置，自动根据路径类型决定是链接还是列表
+      // 记得要导航到index.md，不然所有的页面都会有侧边栏了
       "/DailyRecord/index": [
-        {
-          text: "开发记录",
-          items: [
-                  { text: "博客开发记录", link: "/DailyRecord/开发记录/博客开发记录" },
-                ],
-        },
-        {
-          text: "实习记录",
-          items: set_sidebar("/DailyRecord/实习记录/"),
-        },
+        // 使用黑名单过滤临时文件和草稿
+        set_sidebar_smart(
+          "开发记录", 
+          "/DailyRecord/开发记录/"),
+        set_sidebar_smart(
+          "实习记录", 
+          "/DailyRecord/实习记录/"),
       ],
       "/others/写文章相关/vitepress功能/index": [
-        {
-          text: "配置功能",
-          items: set_sidebar("/others/写文章相关/vitepress功能/配置功能/"),
-        },
-        {
-          text: "写文章用",
-          items: set_sidebar("/others/写文章相关/vitepress功能/写文章用/"),
-        },
-      ]
-
-        
+        // 过滤图片文件夹和临时文件
+        set_sidebar_smart(
+          "拓展语法",
+          "/others/写文章相关/vitepress功能/拓展语法/"
+        ),
+        set_sidebar_smart(
+          "写文章用",
+          "/others/写文章相关/vitepress功能/写文章用/"
+        ),
+      ],
+      "/others/vitepress搭建相关/index": [
+        set_sidebar_smart(
+          "搭建相关", 
+          "/others/vitepress搭建相关/", 
+          [
+          "assets",
+          "import图片示例.md",
+        ]),
+      ],
     },
     // sidebar: false, // 关闭侧边栏
     aside: "left", // 设置右侧文章导航左侧显示

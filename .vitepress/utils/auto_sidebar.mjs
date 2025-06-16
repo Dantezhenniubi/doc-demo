@@ -1,7 +1,7 @@
-import path from "node:path"
 // 引入path模块, 用于处理文件路径, 例如获取文件名, 扩展名等
-import fs from "node:fs"
+import path from "node:path";
 // 引入fs模块, 用于处理文件系统, 例如读取文件, 写入文件等
+import fs from "node:fs";
 
 // 文件根目录
 const DIR_PATH = path.resolve();
@@ -57,9 +57,10 @@ const normalizePath = (pathStr) => {
  * @param {string} dirPath - 目录路径
  * @param {string} pathname - URL路径名
  * @param {number} depth - 当前递归深度
+ * @param {Array} blacklist - 黑名单数组
  * @returns {Array} - 目录结构数组
  */
-function geList(files, dirPath, pathname, depth = 0) {
+function geList(files, dirPath, pathname, depth = 0, blacklist = []) {
     // 递归深度限制
     if (depth > MAX_RECURSION_DEPTH) {
         return [];
@@ -80,6 +81,9 @@ function geList(files, dirPath, pathname, depth = 0) {
                 // 如果是文件夹，读取之后作为下一次递归参数
                 try {
                     const subFiles = fs.readdirSync(itemPath);
+                    // 对子目录也应用黑名单过滤
+                    const combinedBlacklist = [...WHITE_LIST, ...blacklist];
+                    const filteredSubFiles = getDifference(subFiles, combinedBlacklist);
                     
                     // 处理子目录路径，确保URL格式正确
                     const subDirPath = `${pathname}/${item}`.replace(/\\/g, '/');
@@ -87,7 +91,7 @@ function geList(files, dirPath, pathname, depth = 0) {
                     res.push({
                         text: item, // 文件夹名称
                         collapsible: true, // 可折叠
-                        items: geList(subFiles, itemPath, subDirPath, depth + 1),
+                        items: geList(filteredSubFiles, itemPath, subDirPath, depth + 1, blacklist),
                     });
                 } catch (error) {
                     // 静默处理子目录读取错误
@@ -120,12 +124,14 @@ function geList(files, dirPath, pathname, depth = 0) {
     return res;
 }
 
+
 /**
  * 生成侧边栏配置
  * @param {string} pathname - 路径名
+ * @param {Array} blacklist - 黑名单数组，指定要过滤的文件和文件夹名称（可选）
  * @returns {Array} - 侧边栏配置数组
  */
-export const set_sidebar = (pathname) => {
+export const set_sidebar = (pathname, blacklist = []) => {
     try {
         // 规范化路径
         const normalizedPath = normalizePath(pathname);
@@ -141,12 +147,75 @@ export const set_sidebar = (pathname) => {
         // 读取pathname下的所有文件和文件夹
         const files = fs.readdirSync(dirPath);
         
-        // 过滤掉白名单以外的文件和文件夹
-        const filterItems = getDifference(files, WHITE_LIST);
+        // 过滤掉白名单和黑名单中的文件和文件夹
+        const combinedBlacklist = [...WHITE_LIST, ...blacklist];
+        const filterItems = getDifference(files, combinedBlacklist);
         
-        return geList(filterItems, dirPath, pathname);
+        return geList(filterItems, dirPath, pathname, 0, blacklist);
     } catch (error) {
         // 发生错误时返回空数组
         return [];
     }
-}
+};
+
+
+/**
+ * 智能侧边栏配置生成器
+ * 根据路径类型自动决定配置方式：
+ * - 主路径（如 "/DailyRecord/index"）：直接导航到index.md文件
+ * - 子路径（如 "/DailyRecord/开发记录/"）：列出路径下所有md文件
+ * 
+ * @param {string} text - 显示文本
+ * @param {string} pathname - 路径名
+ * @param {Array} blacklist - 黑名单数组，指定要过滤的文件和文件夹名称（可选）
+ * @returns {Object} - 侧边栏配置对象
+ */
+export const set_sidebar_smart = (text, pathname, blacklist = []) => {
+    try {
+        const normalizedPath = normalizePath(pathname);
+        const dirPath = path.join(DIR_PATH, normalizedPath);
+        
+        if (!fs.existsSync(dirPath)) {
+            console.warn(`路径不存在: ${dirPath}`);
+            return { text, items: [] };
+        }
+        
+        // 检查是否是主路径（以/index结尾）
+        if (pathname.endsWith('/index')) {
+            // 主路径，直接返回链接到index.md
+            return {
+                text,
+                link: pathname.replace(/\\/g, '/'),
+            };
+        } else {
+            // 子路径，返回该路径下的所有md文件
+            return {
+                text,
+                items: set_sidebar(pathname, blacklist),
+            };
+        }
+    } catch (error) {
+        console.error(`生成智能侧边栏配置时出错:`, error);
+        return { text, items: [] };
+    }
+};
+
+/**
+ * 生成完整的侧边栏配置对象
+ * 支持多个路径的侧边栏配置
+ * 
+ * @param {Array} configs - 配置数组，每个元素包含 {mainPath, items}
+ * @returns {Object} - 完整的侧边栏配置对象
+ */
+export const create_sidebar_config = (configs) => {
+    const sidebarConfig = {};
+    
+    for (const config of configs) {
+        const { mainPath, items } = config;
+        sidebarConfig[mainPath] = items.map(item => 
+            set_sidebar_smart(item.text, item.path)
+        );
+    }
+    
+    return sidebarConfig;
+};
