@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  text: "分享一些实用的前端小工具！"
-  
+  text: '分享一些实用的前端小工具！'
+
   actions:
     - theme: brand
       text: 回到首页
@@ -32,7 +32,7 @@ features:
     icon:
       src: /assets/cccreate.svg
     link: https://cccreate.co/
-    
+
   - title: imagesTool在线图片处理
     details: 一款在线图片处理工具，支持图片裁剪、压缩、格式转换等功能
     icon:
@@ -54,26 +54,22 @@ features:
     icon:
       src: /assets/astro.svg
     link: https://docs.astro.build/zh-cn/getting-started/
-  
+
   - title: Tauri
     details: 一个构建跨平台桌面应用程序的框架
     icon:
       src: /assets/tauri.svg
     link: https://tauri.app/zh-cn/start/
-    
+
   - title: Slidev
     details: 一个为开发者设计的基于 Web 的幻灯片制作工具。它帮助您以 Markdown 的形式专注于编写幻灯片的内容，并制作出具有交互式演示功能的、高度可自定义的幻灯片。
     icon:
       src: /assets/slidev.svg
     link: https://cn.sli.dev/guide/
-
 ---
 
 ## 感觉不够看？
 
 正在努力添加新内容!
 
-```sh
-npm init
-npx vitepress init
-```
+Markdown表格在线生成器：https://www.tablesgenerator.com/markdown_tables

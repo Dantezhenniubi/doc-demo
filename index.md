@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Welcome to my Site!"
+  name: 'Welcome to my Site!'
   text: "欢迎来到 DtZNB's 的开发记录！"
   tagline: 这是我的开发随笔~
   image:
@@ -38,7 +38,7 @@ features:
     icon:
       src: /assets/开发者武器库.svg
     link: https://devtool.tech/
-  
+
   - title: 宝塔服务器面板
     details: 一款轻量级的服务器面板软件，支持Linux、Windows、MacOS等操作系统
     icon:
@@ -56,18 +56,54 @@ features:
     icon:
       src: /assets/青云.svg
     link: https://www.qingcloud.com/
-
-  
-  
-    
-
 ---
 
 ## 感觉不够看？
 
-正在努力添加新内容!
+<div class="demo1 test-pulse ml-29 shadow-xs">正在努力添加新内容!</div>
 
-```sh
-npm init
-npx vitepress init
-```
+<div class="max-w-sm mx-auto my-6 rounded-xl shadow-md overflow-hidden">
+  <div class="p-8">
+    <div class="text-lg font-medium text-gray-900 mb-2 bg-red-500">卡片标题</div>
+    <p class="text-neon-blue interactive-card">
+      这是一个使用Tailwind CSS创建的漂亮卡片组件。
+    </p>
+    <div class="mt-6 flex space-x-4 ">
+      <button class="px-4 py-2 !bg-gradient-to-r !from-red-500 !to-gray-400 !dark:from-blue-500">
+        点击按钮
+      </button>
+      <br />
+      <button class="!bg-red-500">
+        自定义按钮
+      </button>
+      <br />
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ring-3 ring-blue-500">
+        一个按钮
+      </button>
+      <br />
+      <br />
+      <button class="cs-button text-shadow-lg text-6xl ">
+      测试按钮
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo1 {
+    padding: 5rem 2rem;
+    background-color: rgb(var(--color-primary));
+    color: white;
+    font-weight: bold;
+    border-radius: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 3.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cs-button {
+    background-color: rgb(var(--color-primary));
+  }
+</style>

@@ -42,13 +42,13 @@ jobs:
           node-version: 20.18.2 # 指定与本地相同的Node.js版本
           cache: pnpm # 使用pnpm缓存
       - name: Setup Pages
-        uses: actions/configure-pages@v4  # 在工作流程自动配置GithubPages
+        uses: actions/configure-pages@v4 # 在工作流程自动配置GithubPages
       - name: Clean pnpm cache
         run: pnpm store prune
       - name: Install dependencies
         run: pnpm install
       - name: Build with VitePress
-        run: pnpm run docs:build  # 启动项目
+        run: pnpm run docs:build # 启动项目
       - name: Create .nojekyll file
         run: touch .vitepress/dist/.nojekyll # 创建.nojekyll文件防止GitHub Pages使用Jekyll处理
       - name: Upload artifact
@@ -61,10 +61,10 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build  # 在build后面完成
-    runs-on: ubuntu-latest  # 使用最新的Ubuntu运行器
+    needs: build # 在build后面完成
+    runs-on: ubuntu-latest # 使用最新的Ubuntu运行器
     name: Deploy
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment  # 部署步骤的ID
-        uses: actions/deploy-pages@v4  # 使用GitHub Pages部署操作
+        id: deployment # 部署步骤的ID
+        uses: actions/deploy-pages@v4 # 使用GitHub Pages部署操作

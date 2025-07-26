@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./.vitepress/theme/*"]
+    },
+    // 添加 JSX 相关设置
+    "jsxFactory": "h",  // 用于创建虚拟 DOM 节点的函数，默认值为 'h'
+    "jsxFragmentFactory": "Fragment" // 用于创建片段的函数，默认值为 'Fragment'
+  },
+  "include": [
+    ".vitepress/**/*.ts",
+    ".vitepress/**/*.d.ts",
+    ".vitepress/**/*.tsx",
+    ".vitepress/**/*.vue",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue" // 确保包含 Vue 文件
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/.vitepress/dist/**"
+  ]
+}

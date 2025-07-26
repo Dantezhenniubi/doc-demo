@@ -1,0 +1,40 @@
+/* ======= 工具类样式 ======= */
+
+/* 交互卡片 */
+@utility interactive-card {
+  border: 1px solid theme('colors.gray.200');
+  transition: all 0.3s ease;
+}
+
+/* 霓虹文字效果 */
+@utility text-neon-blue {
+  color: #fff;
+  text-shadow:
+    0 0 5px #3b82f6,
+    0 0 10px #3b82f6,
+    0 0 20px #3b82f6,
+    0 0 40px #2563eb;
+}
+
+@utility text-neon-pink {
+  color: #fff;
+  text-shadow:
+    0 0 5px #ec4899,
+    0 0 10px #ec4899,
+    0 0 20px #ec4899,
+    0 0 40px #db2777;
+}
+
+/* 悬停缩放效果 */
+@utility hoverscale-105 {
+  transform: scale(1.05);
+  transition: transform 150ms ease-in-out;
+}
+
+/* 文本渐变效果 */
+@utility text-gradient-purple {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}

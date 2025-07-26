@@ -1,7 +1,10 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
-import DefaultTheme from 'vitepress/theme'
-import './style.css'
+import { h } from 'vue';
+import DefaultTheme from 'vitepress/theme';
+import './style.css';
+import './css/custom.css'; //tailwindcss 引入
+import TailwindCard from './components/TailwindCard.vue';
+
 // import 'bulma-prefix/css/bulma.prefixed.min.css'
 // import 'bulma/versions/bulma-prefixed.scss'
 
@@ -11,9 +14,10 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
+    });
   },
   enhanceApp({ app, router, siteData }) {
     // ...
-  }
-}
+    app.component('TailwindCard', TailwindCard);
+  },
+};

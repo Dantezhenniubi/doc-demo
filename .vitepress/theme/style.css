@@ -92,20 +92,14 @@
 /* 设置layout的Hero部分的name的渐变色 */
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #e7770f 30%,
-    #f2ff41
-  );
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #e7770f 30%, #f2ff41);
 
   /* --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
     #bd34fe 50%,
     #47caff 50%
   ); */
-  --vp-home-hero-image-background-image: linear-gradient(-145deg,
-        #f57c0b 40%,
-        #fdbd0b 60%);
+  --vp-home-hero-image-background-image: linear-gradient(-145deg, #f57c0b 40%, #fdbd0b 60%);
   --vp-home-hero-image-filter: blur(44px);
 }
 
@@ -171,7 +165,9 @@
 .aside-container {
   position: fixed;
   top: 0;
-  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + var(--vp-doc-top-height, 0px) + 10px) !important;
+  padding-top: calc(
+    var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + var(--vp-doc-top-height, 0px) + 10px
+  ) !important;
   /* 左侧边栏上部内边距 */
   /* width: calc(100% - 224px) !important; */
   width: 224px;
@@ -189,11 +185,8 @@
 }
 /* 自定义h2的前缀 */
 .vp-doc h2::before {
-  content: "💡";
+  content: '💡';
 }
-
-
-
 
 /* 侧边栏标题 */
 .aside-content .outline-title {
@@ -205,7 +198,7 @@
 }
 /* 侧边栏标题后缀 */
 .aside-content .outline-title::after {
-  content: "～(∠・ω<)⌒✨";
+  content: '～(∠・ω<)⌒✨';
   font-size: 0.9rem;
   font-weight: 1500;
   color: var(--vp-c-text-2);
@@ -237,7 +230,6 @@
   transform: translateX(4px);
 }
 
-
 /* 侧边栏link文字 */
 .aside-content .outline-link {
   font-style: normal !important;
@@ -249,31 +241,28 @@
   color: inherit;
   display: block;
   position: relative;
-  padding: 0px 22px;  /* 增加上下内边距 */
-  margin: 4px 0;  /* 增加外边距 */
+  padding: 0px 22px; /* 增加上下内边距 */
+  margin: 4px 0; /* 增加外边距 */
   font-size: 1rem !important; /* 调大字体 */
 }
 /* 侧边栏link前缀常态 */
 .aside-content a::before {
-  content: "•";
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--vp-c-brand-1) !important;
 }
 /* 侧边栏link前缀激活后 */
 .aside-content .active::before {
-  content: "👉";
+  content: '👉';
   position: absolute;
   left: 0;
   color: var(--vp-c-brand-1) !important;
-
 }
 /* 侧边栏link选中后 */
 .aside-content a:hover {
   color: var(--vp-c-brand-1) !important;
 }
-
-
 
 /* 标记 */
 .aside-content .outline-marker {

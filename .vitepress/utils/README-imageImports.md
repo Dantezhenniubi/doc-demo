@@ -31,7 +31,7 @@ import { getImage } from '../.vitepress/utils/imageImports.js';
 <template>
   <!-- 基本用法 -->
   <img :src="getImage('DailyRecord/assets', '夏娜')" alt="夏娜" />
-  
+
   <!-- 带备用图片的用法 -->
   <img :src="getImage('DailyRecord/assets', '夏娜') || '/fallback-image.jpg'" alt="夏娜" />
 </template>
@@ -45,7 +45,10 @@ import { getImage } from '../.vitepress/utils/imageImports.js';
 import { getImage, registerImageDirectory } from './.vitepress/utils/imageImports.js';
 
 // 使用import.meta.glob导入图片
-const customImages = import.meta.glob('../path/to/images/*.{jpg,png,svg}', { eager: true, import: 'default' });
+const customImages = import.meta.glob('../path/to/images/*.{jpg,png,svg}', {
+  eager: true,
+  import: 'default',
+});
 
 // 注册自定义目录
 registerImageDirectory('custom/images', customImages);

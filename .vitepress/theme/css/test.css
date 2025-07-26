@@ -1,0 +1,63 @@
+/* ======= 测试样式 ======= */
+
+/* 显眼的测试按钮 */
+.test-button {
+  padding: 1rem 2rem;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.test-button:hover {
+  background-color: rgb(29, 78, 216);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.test-button::after {
+  content: '✓';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.test-button:hover::after {
+  right: 20px;
+  opacity: 1;
+}
+
+/* 脉冲动画效果 */
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.test-pulse {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: #f30b0b;
+  border-radius: 0.25rem;
+  animation: pulse 2s infinite;
+}
