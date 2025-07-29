@@ -49,7 +49,8 @@ jobs:
         run: pnpm install
       - name: Build with VitePress
         run: |
-          export NODE_ENV=production  
+          export NODE_ENV=production
+          echo "NODE_ENV=$NODE_ENV"  
           pnpm run docs:build 
         # 启动项目 明确设置 GitHub Actions 中的环境变量
       - name: Create .nojekyll file
