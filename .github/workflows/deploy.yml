@@ -48,7 +48,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build with VitePress
-        run: pnpm run docs:build # 启动项目
+        run: |
+          export NODE_ENV=production  
+          pnpm run docs:build 
+        # 启动项目 明确设置 GitHub Actions 中的环境变量
       - name: Create .nojekyll file
         run: touch .vitepress/dist/.nojekyll # 创建.nojekyll文件防止GitHub Pages使用Jekyll处理
       - name: Upload artifact
