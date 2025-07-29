@@ -27,15 +27,10 @@ export default defineConfig({
         entryPoint: path.resolve(__dirname, './theme/css/custom.css'),
         // 避免重复注入基础样式
         injectBase: false,
-        // 生产环境优化
-        minify: process.env.NODE_ENV === 'production',
-        // 开发环境配置
-        ...(process.env.NODE_ENV === 'development' && {
-          // 开发时禁用压缩以提高构建速度
-          minify: false,
-          // 启用源码映射以便调试
-          sourceMap: true,
-        }),
+        // 始终启用压缩以确保生产环境正常工作
+        minify: true,
+        // 确保在生产环境中正确处理
+        sourceMap: false,
       }),
     ],
     // 优化构建配置
