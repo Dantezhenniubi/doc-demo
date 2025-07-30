@@ -22,7 +22,7 @@
   },
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "export NODE_ENV=production && vitepress build",
+    "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
     "lint": "eslint . --fix",
     "format": "prettier --write .",

@@ -66,6 +66,10 @@ import TsButton from './.vitepress/theme/components/TsButton.vue'
 <TsButton />
 :::
 
+:::raw
+<TailwindCard />
+:::
+
 ## 感觉不够看？
 :::raw
 <div class="overflow-hidden">
