@@ -34,26 +34,26 @@ export default defineConfig({
       }),
     ],
     // 优化构建配置
-  //   build: {
-  //     // 启用 CSS 代码分割
-  //     cssCodeSplit: true,
-  //     // 生产环境压缩
-  //     minify: process.env.NODE_ENV === 'production',
-  //     // 配置 CSS 压缩选项
-  //     cssMinify: process.env.NODE_ENV === 'production',
-  //     // 配置构建时的 Rollup 选项
-  //     rollupOptions: {
-  //       output: {
-  //         // 优化 CSS 分块策略
-  //         manualChunks(id) {
-  //           if (id.includes('node_modules')) {
-  //             return 'vendor';
-  //           }
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
+    // build: {
+    //   // 启用 CSS 代码分割
+    //   cssCodeSplit: true,
+    //   // 生产环境压缩
+    //   minify: process.env.NODE_ENV === 'production',
+    //   // 配置 CSS 压缩选项
+    //   cssMinify: process.env.NODE_ENV === 'production',
+    //   // 配置构建时的 Rollup 选项
+    //   rollupOptions: {
+    //     output: {
+    //       // 优化 CSS 分块策略
+    //       manualChunks(id) {
+    //         if (id.includes('node_modules')) {
+    //           return 'vendor';
+    //         }
+    //       },
+    //     },
+    //   },
+    // },
+  },
 
   themeConfig: {
     outlineTitle: '目录',
