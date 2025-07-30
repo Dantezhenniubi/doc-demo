@@ -19,9 +19,10 @@
     "vue-eslint-parser": "^10.2.0"
   },
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "export NODE_ENV=production && vitepress build",
+    "docs:dev": "node apply-patches.js && vitepress dev",
+    "docs:build": "node apply-patches.js && export NODE_ENV=production && vitepress build",
     "docs:preview": "vitepress preview",
+    "apply-patches": "node apply-patches.js",
     "lint": "eslint . --fix",
     "format": "prettier --write .",
     "check:format": "prettier --check ."

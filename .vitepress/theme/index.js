@@ -1,9 +1,8 @@
 // https://vitepress.dev/guide/custom-theme
 import { h } from 'vue';
 import DefaultTheme from 'vitepress/theme';
-// 确保 Tailwind CSS 在其他样式之前引入
-import './css/custom.css'; // tailwindcss 引入
 import './style.css';
+import './css/custom.css'; //tailwindcss 引入
 import TailwindCard from './components/TailwindCard.vue';
 
 // import 'bulma-prefix/css/bulma.prefixed.min.css'

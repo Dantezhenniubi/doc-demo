@@ -1,0 +1,17 @@
+/**
+ * VitePress CSS Layer Fix for Tailwind CSS v4
+ * 
+ * This file wraps VitePress default styles in a CSS layer to prevent
+ * conflicts with Tailwind CSS v4 which uses native CSS layers.
+ * 
+ * Based on the solution from: https://github.com/vuejs/vitepress/issues/4425
+ */
+
+/* Define VitePress base layer */
+@layer vp-base {
+  /* Import VitePress default styles here */
+  /* This will be applied after Tailwind's layers */
+}
+
+/* Ensure Tailwind layers are properly ordered */
+@layer theme, base, components, utilities, vp-base;

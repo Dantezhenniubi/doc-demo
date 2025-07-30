@@ -1,3 +1,6 @@
+/* 首先引入VitePress层修复 */
+@import './vitepress-layer-fix.css';
+
 /* 引入带前缀核心样式 */
 @import 'tailwindcss' prefix(tw);
 /* 引入不带前缀核心样式 */
