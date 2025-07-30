@@ -59,6 +59,17 @@ features:
 ---
 
 ## 感觉不够看？
+:::raw
+<div class="bg-blue-500 text-white p-4 rounded-lg">
+  This is a block styled with Tailwind CSS
+</div>
+:::
+
+:::raw
+<div class="tw:bg-blue-500 tw:text-white tw:p-4 tw:rounded-lg">
+  This is a block styled with Tailwind CSS
+</div>
+:::
 
 <div class="demo1 test-pulse ml-29 shadow-xs">正在努力添加新内容!</div>
 
