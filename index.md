@@ -58,6 +58,14 @@ features:
     link: https://www.qingcloud.com/
 ---
 
+<script setup>
+import TsButton from './.vitepress/theme/components/TsButton.vue'
+</script>
+
+:::raw
+<TsButton />
+:::
+
 ## 感觉不够看？
 :::raw
 <div class="bg-blue-500 text-white p-4 rounded-lg">
