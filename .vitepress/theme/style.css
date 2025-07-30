@@ -1,46 +1,37 @@
 /**
- * Customize default theme styling by overriding CSS variables:
+ * 通过覆盖 CSS 变量来自定义默认主题样式：
  * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
  */
 
 /**
- * Colors
+ * 颜色系统
  *
- * Each colors have exact same color scale system with 3 levels of solid
- * colors with different brightness, and 1 soft color.
+ * 每种颜色都具有相同的颜色比例系统，包含3个不同亮度的纯色和1个柔和色。
  *
- * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
+ * - `XXX-1`: 最纯的颜色，主要用于彩色文本。当用在 `XXX-soft` 颜色之上时，
+ *   必须满足对比度要求。
  *
- * - `XXX-2`: The color used mainly for hover state of the button.
+ * - `XXX-2`: 主要用于按钮的悬停状态的颜色。
  *
- * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
- *   top of it.
+ * - `XXX-3`: 用于纯色背景，比如按钮的背景色。当上面放置纯白色(#ffffff)
+ *   文本时，必须满足对比度要求。
  *
- * - `XXX-soft`: The color used for subtle background such as custom container
- *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
- *   on top of it.
+ * - `XXX-soft`: 用于柔和背景，如自定义容器或徽章。当上面放置 `XXX-1` 
+ *   颜色时，必须满足对比度要求。
  *
- *   The soft color must be semi transparent alpha channel. This is crucial
- *   because it allows adding multiple "soft" colors on top of each other
- *   to create a accent, such as when having inline code block inside
- *   custom containers.
+ *   柔和色必须使用半透明的 alpha 通道。这一点很重要，因为它允许多个
+ *   "柔和"颜色叠加来创建强调效果，比如在自定义容器内部有内联代码块时。
  *
- * - `default`: The color used purely for subtle indication without any
- *   special meanings attached to it such as bg color for menu hover state.
+ * - `default`: 纯粹用于细微提示的颜色，没有特殊含义，比如菜单悬停状态
+ *   的背景色。
  *
- * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
+ * - `brand`: 用于主要品牌颜色，如链接文本、品牌主题按钮等。
  *
- * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
+ * - `tip`: 用于指示有用信息。默认主题默认使用品牌颜色。
  *
- * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
+ * - `warning`: 用于向用户显示警告。用在自定义容器、徽章等处。
  *
- * - `danger`: Used to show error, or dangerous message to the users. Used
- *   in custom container, badges, etc.
+ * - `danger`: 用于向用户显示错误或危险信息。用在自定义容器、徽章等处。
  * -------------------------------------------------------------------------- */
 
 :root {

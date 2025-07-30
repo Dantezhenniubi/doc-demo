@@ -21,38 +21,7 @@ export default defineConfig({
   titleTemplate: ":title | DtZNB's Blog",
   description: "DtZNB's Blog",
   vite: {
-    plugins: [
-      tailwindcss({
-        // 指定 Tailwind 入口文件
-        entryPoint: path.resolve(__dirname, './theme/css/custom.css'),
-        // 避免重复注入基础样式
-        // injectBase: false,
-        // 始终启用压缩以确保生产环境正常工作
-        minify: true,
-        // 确保在生产环境中正确处理
-        sourceMap: false,
-      }),
-    ],
-    // 优化构建配置
-    // build: {
-    //   // 启用 CSS 代码分割
-    //   cssCodeSplit: true,
-    //   // 生产环境压缩
-    //   minify: process.env.NODE_ENV === 'production',
-    //   // 配置 CSS 压缩选项
-    //   cssMinify: process.env.NODE_ENV === 'production',
-    //   // 配置构建时的 Rollup 选项
-    //   rollupOptions: {
-    //     output: {
-    //       // 优化 CSS 分块策略
-    //       manualChunks(id) {
-    //         if (id.includes('node_modules')) {
-    //           return 'vendor';
-    //         }
-    //       },
-    //     },
-    //   },
-    // },
+    plugins: [tailwindcss()],
   },
 
   themeConfig: {
