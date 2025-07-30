@@ -1,7 +1,7 @@
 /* 引入带前缀核心样式 */
-@import 'tailwindcss' prefix(tw);
+/* @import 'tailwindcss' prefix(tw); */
 /* 引入不带前缀核心样式 */
-/* @import "tailwindcss"; */
+@import "tailwindcss";
 
 /* 引入其它样式 */
 @import './fonts.css';
