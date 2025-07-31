@@ -1,9 +1,8 @@
 // https://vitepress.dev/guide/custom-theme
 import { h } from 'vue';
-
 import DefaultTheme from 'vitepress/theme';
 import './style.css';
-import './css/tailwind.css'; //tailwindcss 引入
+// import './css/tailwind.css'; //tailwindcss 引入
 import TailwindCard from './components/TailwindCard.vue';
 import Linkcard from './components/Linkcard.vue';
 
