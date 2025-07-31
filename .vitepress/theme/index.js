@@ -5,6 +5,7 @@ import DefaultTheme from 'vitepress/theme';
 import './style.css';
 import './css/tailwind.css'; //tailwindcss 引入
 import TailwindCard from './components/TailwindCard.vue';
+import Linkcard from './components/Linkcard.vue';
 
 // import 'bulma-prefix/css/bulma.prefixed.min.css'
 // import 'bulma/versions/bulma-prefixed.scss'
@@ -20,5 +21,6 @@ export default {
   enhanceApp({ app, router, siteData }) {
     // ...
     app.component('TailwindCard', TailwindCard);
+    app.component('Linkcard', Linkcard);
   },
 };

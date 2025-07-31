@@ -40,36 +40,3 @@ const count = ref(0);
   background-color: #2563eb;
 }
 </style>
-
-<style>
-/* 全局字体定义 */
-@font-face {
-  font-family: 'ComicMono';
-  src: url('/fonts/ComicMono.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'KMHai';
-  src: url('/fonts/KMHai.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-.font-comic-mono {
-  font-family: 'ComicMono', monospace;
-  margin: 10px 0;
-  padding: 5px;
-  background: #f0f9ff;
-}
-
-.font-kmhai {
-  font-family: 'KMHai', sans-serif;
-  margin: 10px 0;
-  padding: 5px;
-  background: #f0fdf4;
-}
-</style>

@@ -62,6 +62,8 @@ features:
 import TsButton from './.vitepress/theme/components/TsButton.vue'
 </script>
 
+<Linkcard url="https://vitepress.yiov.top/" title="Vitepress中文搭建教程" description="https://vitepress.yiov.top/" logo="https://vitepress.yiov.top/logo.png"/>
+
 :::raw
 <TsButton />
 :::
