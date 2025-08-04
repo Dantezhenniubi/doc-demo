@@ -45,23 +45,13 @@
   --breakpoint-2xl: 1536px;
 
   /* 字体配置 */
-  --font-comic-mono: 'Comic Mono', 'KMHai';
+  /* --font-comic-mono: 'Comic Mono', 'KMHai';
   --font-aidian: 'AiDian', sans-serif;
   --font-yupearl: 'YuPearl', sans-serif;
   --font-kmhai: 'KMHai', sans-serif;
   --font-orbitron: 'Orbitron', sans-serif;
   --font-comic-shanns-mono: 'ComicShannsMono', sans-serif;
-  --font-sofadi: 'Sofadi', sans-serif;
+  --font-sofadi: 'Sofadi', sans-serif; */
 }
 
-/* 设置中英文站点时默认字体，无法显示的内容使用对应字体在root里的回退链 */
-/* 中文内容字体配置 */
-:root:lang(zh),
-:root:lang(zh-CN) {
-  --vp-font-family-base: var(--font-sofadi);
-}
 
-/* 英文内容字体配置 */
-:root:lang(en) {
-  --vp-font-family-base: var(--font-comic-mono);
-}
