@@ -4,7 +4,7 @@
 @import "tailwindcss";
 
 /* 引入其它样式 */
-@import './fonts.css';
+/* @import './fonts.css'; */
 @import './utilities.css';
 @import './test.css';
 @import './theme.css';
